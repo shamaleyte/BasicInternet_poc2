@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -13,6 +14,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+import com.hypelabs.hype.Hype;
 import com.hypelabs.hype.Instance;
 
 public class HypePubSub
@@ -20,6 +22,11 @@ public class HypePubSub
     // Members
     final SubscriptionsList ownSubscriptions;
     final ServiceManagersList managedServices;
+
+
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+
 
     // Private
     private static final String TAG =  HypePubSub.class.getName();
@@ -32,7 +39,7 @@ public class HypePubSub
     {
         return hps;
     }
-
+    private static final String BROADCAST_ALL_MSGS = "broadcast_all_msgs";
     private HypePubSub()
     {
         this.ownSubscriptions = new SubscriptionsList();
@@ -44,9 +51,11 @@ public class HypePubSub
     //////////////////////////////////////////////////////////////////////////////
 
     boolean issueSubscribeReq(String serviceName) {
+        Log.i(TAG, String.format("%s inside issueSubscribeReq()", HYPE_PUB_SUB_LOG_PREFIX));
         byte serviceKey[] = HpsGenericUtils.stringHash(serviceName);
+        Log.i(TAG, String.format("%s serviceKey received", HYPE_PUB_SUB_LOG_PREFIX));
         Client managerClient = network.determineClientResponsibleForService(serviceKey);
-
+        Log.i(TAG, String.format("%s managerClient object created.", HYPE_PUB_SUB_LOG_PREFIX));
         boolean wasSubscriptionAdded = ownSubscriptions.addSubscription(new Subscription(serviceName, managerClient));
         if(!wasSubscriptionAdded) {
             return false;
@@ -88,8 +97,10 @@ public class HypePubSub
         if(HpsGenericUtils.areClientsEqual(network.ownClient, managerClient)) {
             printIssueReqToHostInstanceLog("Publish", serviceName);
             processPublishReq(serviceKey, msg); // bypass protocol manager
+            Log.i(TAG, String.format("%s issuePublishReq IF ", HYPE_PUB_SUB_LOG_PREFIX));
         }
         else {
+            Log.i(TAG, String.format("%s issuePublishReq ELSE ", HYPE_PUB_SUB_LOG_PREFIX));
             Protocol.sendPublishMsg(serviceKey, managerClient.instance, msg);
         }
     }
@@ -123,6 +134,7 @@ public class HypePubSub
                 BinaryUtils.byteArrayToHexString(serviceKey)));
 
         serviceManager.subscribers.addClient(new Client(requesterInstance));
+        sendBroadcastMsgsRequest();
     }
 
     synchronized void processUnsubscribeReq(byte serviceKey[], Instance requesterInstance) {
@@ -231,6 +243,29 @@ public class HypePubSub
             }
         }
     }
+public void sendBroadcastMsgsRequest(){
+    /* Here we can push all the messages we have */
+    /* Broadcasting This Message for the Main Class */
+    Log.d(TAG, String.format("%s Subscribers found - so let's publish the messages that we have", HYPE_PUB_SUB_LOG_PREFIX));
+
+    Intent broadcastIntent = new Intent();
+    Bundle bb = new Bundle();
+    bb.putString(BROADCAST_ALL_MSGS, "all-available-msgs");
+    broadcastIntent.putExtras(bb);
+    broadcastIntent.setAction("Broadcast_All_Msgs");
+    MainActivity.getContext().sendBroadcast(broadcastIntent);
+}
+    public void sendHypeStartedMessage(){
+        /* Broadcasting This Message for the Main Class */
+        Intent broadcastIntent = new Intent();
+        Bundle bb = new Bundle();
+        bb.putString("hypeStarted", "started");
+        broadcastIntent.putExtras(bb);
+        broadcastIntent.setAction("Hype_Status");
+        MainActivity.getContext().sendBroadcast(broadcastIntent);
+        Log.i(TAG, String.format("%s Start message. is being sent to the main activity ...",
+                HpsGenericUtils.getLogStrFromInstance(Hype.getHostInstance())));
+    }
 
     synchronized void updateOwnSubscriptions() {
         Log.i(TAG, String.format("%s Executing updateManagedServices (%d subscriptions)",
@@ -312,6 +347,7 @@ public class HypePubSub
 
         notificationID++;
     }
+
 
     //////////////////////////////////////////////////////////////////////////////
     // Logging Methods

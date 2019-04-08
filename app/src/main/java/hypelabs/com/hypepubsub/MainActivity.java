@@ -47,13 +47,11 @@ private Button checkManagedServicesButton;
 
 
 private SharedPreferences prefs;
+private SharedPreferences.Editor editor;
 private List<String> cachedMessages = new ArrayList<>();
 String[] messages = new String[] {"BasicInternet Messages"};
 
-private List<String> subscribedChannels = new ArrayList<>();
 private List<String> messagesList = new ArrayList<>(Arrays.asList(messages));
-
-
 ArrayAdapter<String> adapter;
 private ListView mListView;
 
@@ -63,6 +61,8 @@ private static final String HYPE_PUB_SUB_LOG_PREFIX = HpsConstants.LOG_PREFIX + 
 private static final String CHANNEL_MESSAGES = "messages";
 private static final String SUBSCRIBED_CHANNELS = "channels";
 private static final String MESSAGE_HYPE_STARTED = "hypeStarted";
+private static final String BROADCAST_ALL_MSGS = "broadcast_all_msgs";
+private static final String MESSAGE_RECEIVED = "message";
 
 private static MainActivity instance; // Way of accessing the application context from other classes
 
@@ -80,20 +80,36 @@ IntentFilter mIntentFilter;
 private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(TAG, String.format("%s BroadcastReceiver()", HYPE_PUB_SUB_LOG_PREFIX));
+        Log.i(TAG, String.format("%s BroadcastReceiver()", HYPE_PUB_SUB_LOG_PREFIX));
         Bundle b = intent.getExtras();
         try {
-            if (b.getString("message") != null) {
-                Log.d(TAG, String.format("%s BroadCast Received for MESSAGE", HYPE_PUB_SUB_LOG_PREFIX));
-                String res = b.getString("message");
-                cachedMessages.add(res);
-                messagesList.add(res);
-                if (adapter != null)
-                    adapter.notifyDataSetChanged();
+            if (b.getString(MESSAGE_RECEIVED) != null) {
+                Log.i(TAG, String.format("%s BroadCast1 Received for MESSAGE", HYPE_PUB_SUB_LOG_PREFIX));
+                String res = b.getString(MESSAGE_RECEIVED);
+
+                /* If the received message is already in the list, do not keep it */
+                if(messagesList.contains(res))
+                    Log.i(TAG, String.format("%s Received message already exists : " + res , HYPE_PUB_SUB_LOG_PREFIX));
+                else {
+                    cachedMessages.add(res);
+                    messagesList.add(res);
+                    Log.i(TAG, String.format("%s messageList is updated at the code level." , HYPE_PUB_SUB_LOG_PREFIX));
+                    if (adapter != null) {
+                        adapter.notifyDataSetChanged();
+                        Log.i(TAG, String.format("%s Main ListView is being UPDATED!!! : " , HYPE_PUB_SUB_LOG_PREFIX));
+                    }
+                    else
+                        Log.i(TAG, String.format("%s Main ListView is NULL and CANNOT be updated :(" , HYPE_PUB_SUB_LOG_PREFIX));
+
+                }
             }
             if(b.getString(MESSAGE_HYPE_STARTED) !=null){
-                Log.d(TAG, String.format("%s BroadCast Received for HypeStatus", HYPE_PUB_SUB_LOG_PREFIX));
+                Log.i(TAG, String.format("%s BroadCast2 Received for HypeStatus", HYPE_PUB_SUB_LOG_PREFIX));
                 reSubscribeToAllChannels();
+            }
+            if(b.getString(BROADCAST_ALL_MSGS) !=null){
+                Log.i(TAG, String.format("%s BroadCast3 Received for Broadcasting ALL messages to the subscribers", HYPE_PUB_SUB_LOG_PREFIX));
+                broadcastAllMessages();
             }
         }
         catch (Exception e){
@@ -103,9 +119,10 @@ private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
 };
 
 
+
 @Override
 protected void onCreate(Bundle savedInstanceState) {
-    Log.d(TAG, String.format("%s onCreate()", HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s onCreate()", HYPE_PUB_SUB_LOG_PREFIX));
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
@@ -119,11 +136,13 @@ protected void onCreate(Bundle savedInstanceState) {
 
     /* Catch the broadcast message */
     getTheBroadcastMessage();
-    //getHypeStatus();
+    getHypeStatus();
+    getBroadcastAllMessagesRequest();
 
     /* Initialize Pref. */
     Context context = MainActivity.getContext();
     prefs = context.getSharedPreferences(CHANNEL_MESSAGES, Context.MODE_PRIVATE);
+
 
     if(uiData.isToInitializeSdk) {
         initHypeSdk();
@@ -133,7 +152,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 @Override
 protected void onStop(){
-    Log.d(TAG, String.format("%s onStop()", HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s onStop()", HYPE_PUB_SUB_LOG_PREFIX));
     try {
         unregisterReceiver(mIntentReceiver);
     }catch (Exception e){
@@ -145,15 +164,14 @@ protected void onStop(){
 
 @Override
 protected void onResume() {
-    Log.d(TAG, String.format("%s onResume()", HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s onResume()", HYPE_PUB_SUB_LOG_PREFIX));
     super.onResume();
     loadDataFromPrefs(CHANNEL_MESSAGES);
-    //loadDataCustom();
 }
 
 @Override
 protected void onPause() {
-    Log.d(TAG, String.format("%s onPause()", HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s onPause()", HYPE_PUB_SUB_LOG_PREFIX));
     super.onPause();
     storeMessagesToPrefs();
 }
@@ -161,7 +179,7 @@ protected void onPause() {
 @Override
 protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
-    Log.d(TAG, String.format("%s onSaveInstanceState()", HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s onSaveInstanceState()", HYPE_PUB_SUB_LOG_PREFIX));
     /* Save your work here */
     storeChannelsToPrefs();
 }
@@ -230,12 +248,20 @@ private void getTheBroadcastMessage(){
     mIntentFilter.addAction("Published_Message");
     registerReceiver(mIntentReceiver, mIntentFilter);
 }
-    private void getHypeStatus(){
+
+private void getHypeStatus(){
+    // Create Intent Filter
+    mIntentFilter = new IntentFilter();
+    mIntentFilter.addAction("Hype_Status");
+    registerReceiver(mIntentReceiver, mIntentFilter);
+}
+
+private void getBroadcastAllMessagesRequest(){
         // Create Intent Filter
         mIntentFilter = new IntentFilter();
-        mIntentFilter.addAction("Hype_Status");
+        mIntentFilter.addAction("Broadcast_All_Msgs");
         registerReceiver(mIntentReceiver, mIntentFilter);
-    }
+}
 //////////////////////////////////////////////////////////////////////////////
 // Button Listener Methods
 //////////////////////////////////////////////////////////////////////////////
@@ -455,28 +481,30 @@ private class subscribeServiceAction implements IServiceAction {
             return;
         }
 
-        Log.d(TAG, String.format("%s subscribeServiceAction ...()", HYPE_PUB_SUB_LOG_PREFIX));
+        Log.i(TAG, String.format("%s subscribeServiceAction ...()", HYPE_PUB_SUB_LOG_PREFIX));
         boolean wasSubscribed = hps.issueSubscribeReq(serviceName);
         if (wasSubscribed) {
-            subscribedChannels.add(serviceName);
             uiData.addSubscribedService(MainActivity.this, serviceName);
             uiData.removeUnsubscribedService(MainActivity.this, serviceName);
         }
     }
 }
+
+
 private void manuallySubscribe(String serviceName){
-    Log.d(TAG, String.format("%s manuallySubscribe()", HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s manuallySubscribe()", HYPE_PUB_SUB_LOG_PREFIX));
     if(hps != null) {
-        Log.d(TAG, String.format("%s hps object not NULL - continue", HYPE_PUB_SUB_LOG_PREFIX));
+        Log.i(TAG, String.format("%s hps object not NULL - continue", HYPE_PUB_SUB_LOG_PREFIX));
         boolean wasSubscribed = hps.issueSubscribeReq(serviceName);
         if (wasSubscribed) {
-            subscribedChannels.add(serviceName);
+            Log.i(TAG, String.format("%s wasSubscribed TRUE", HYPE_PUB_SUB_LOG_PREFIX));
+
             uiData.addSubscribedService(MainActivity.this, serviceName);
             uiData.removeUnsubscribedService(MainActivity.this, serviceName);
         }
     }
     else{
-        Log.d(TAG, String.format("%s hbs is NULL ()", HYPE_PUB_SUB_LOG_PREFIX));
+        Log.i(TAG, String.format("%s hbs is NULL ()", HYPE_PUB_SUB_LOG_PREFIX));
     }
 }
 private class unsubscribeServiceAction implements IServiceAction {
@@ -598,42 +626,38 @@ static String processUserServiceNameInput(String input)
 /* Data Storage Operations */
 
 protected void storeMessagesToPrefs() {
-    Log.d(TAG, String.format("%s storeMessagesToPrefs()", HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s storeMessagesToPrefs()", HYPE_PUB_SUB_LOG_PREFIX));
     if (prefs == null) {
         return;
     }
-    SharedPreferences.Editor editor = prefs.edit();
+
 
     // store list as jsonarray
     JSONArray jsonArray = new JSONArray();
     for (String z : cachedMessages) {
         jsonArray.put(z);
-        Log.d(TAG, String.format("%s Add Message: " + z, HYPE_PUB_SUB_LOG_PREFIX));
+        Log.i(TAG, String.format("%s Add Message from local: " + z, HYPE_PUB_SUB_LOG_PREFIX));
     }
+    editor = prefs.edit();
     editor.putString(CHANNEL_MESSAGES, jsonArray.toString());
     editor.commit();
-    Log.d(TAG, String.format("%s SAVED into PREF storage.", HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s SAVED into PREF storage.", HYPE_PUB_SUB_LOG_PREFIX));
 }
-    private void loadDataCustom() {
-        messagesList.add("osman");
-        if (adapter != null) adapter.notifyDataSetChanged();
-    }
-
 private void loadDataFromPrefs(String dataset) {
-    Log.d(TAG, String.format("%s loadDataFromPrefs()", HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s loadDataFromPrefs()", HYPE_PUB_SUB_LOG_PREFIX));
     if (prefs == null) {
-        Log.d(TAG, String.format("%s PREF  = NULL ", HYPE_PUB_SUB_LOG_PREFIX));
+        Log.i(TAG, String.format("%s PREF  = NULL ", HYPE_PUB_SUB_LOG_PREFIX));
         return;
     }
     else{
-        Log.d(TAG, String.format("%s PREF has DATA", HYPE_PUB_SUB_LOG_PREFIX));
+        Log.i(TAG, String.format("%s PREF has DATA", HYPE_PUB_SUB_LOG_PREFIX));
     }
 
 
     // read in json array from prefs to fill list
     cachedMessages = new ArrayList<>();
     String jsonArrayString = prefs.getString(dataset, "");
-    Log.d(TAG, String.format("%s jsonArrayString : " + jsonArrayString, HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s jsonArrayString for " + dataset + " is : " + jsonArrayString, HYPE_PUB_SUB_LOG_PREFIX));
     if (!TextUtils.isEmpty(jsonArrayString)) {
         try {
             JSONArray jsonArray = new JSONArray(jsonArrayString);
@@ -641,7 +665,7 @@ private void loadDataFromPrefs(String dataset) {
                 messagesList.clear();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     String next= jsonArray.getString(i);
-                    Log.d(TAG, String.format("%s next : " + next, HYPE_PUB_SUB_LOG_PREFIX));
+                    Log.i(TAG, String.format("%s next : " + next, HYPE_PUB_SUB_LOG_PREFIX));
                     cachedMessages.add(next);
                     messagesList.add(next);
                     if (adapter != null) adapter.notifyDataSetChanged();
@@ -652,50 +676,58 @@ private void loadDataFromPrefs(String dataset) {
         }
     }
 }
-    protected void storeChannelsToPrefs(){
-        Log.d(TAG, String.format("%s storeChannelsToPrefs()", HYPE_PUB_SUB_LOG_PREFIX));
+protected void storeChannelsToPrefs(){
+
+        Log.i(TAG, String.format("%s App's subscription list size:  " + hps.ownSubscriptions.size(), HYPE_PUB_SUB_LOG_PREFIX));
+        Log.i(TAG, String.format("%s storeChannelsToPrefs()", HYPE_PUB_SUB_LOG_PREFIX));
         if (prefs == null) {
             return;
         }
-        SharedPreferences.Editor editor = prefs.edit();
 
-        // store list as jsonarray
         JSONArray jsonArray = new JSONArray();
-        for (String z : subscribedChannels) {
-            jsonArray.put(z);
-            Log.d(TAG, String.format("%s Add Channel : " + z, HYPE_PUB_SUB_LOG_PREFIX));
+        for(int a = 0 ; a < hps.ownSubscriptions.size(); a ++){
+            jsonArray.put(hps.ownSubscriptions.get(a).serviceName);
+            Log.i(TAG, String.format("%s Add Channel : " + hps.ownSubscriptions.get(a).serviceName, HYPE_PUB_SUB_LOG_PREFIX));
         }
+
+        editor = prefs.edit();
         editor.putString(SUBSCRIBED_CHANNELS, jsonArray.toString());
         editor.commit();
-        Log.d(TAG, String.format("%s SAVED into PREF storage.", HYPE_PUB_SUB_LOG_PREFIX));
+        Log.i(TAG, String.format("%s SAVED CHANNELS into PREF storage.", HYPE_PUB_SUB_LOG_PREFIX));
 
     }
+
+protected void broadcastAllMessages(){
+    Log.i(TAG, String.format("%s Broadcasting all of the msgs one by one ()", HYPE_PUB_SUB_LOG_PREFIX));
+   for(String next : messagesList) {
+       Log.i(TAG, String.format("%s broadcasting next msg : " + next, HYPE_PUB_SUB_LOG_PREFIX));
+       hps.issuePublishReq("hype-jobs", next);
+   }
+}
 protected void reSubscribeToAllChannels(){
-    Log.d(TAG, String.format("%s reSubscribeToAllChannels()", HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s reSubscribeToAllChannels()", HYPE_PUB_SUB_LOG_PREFIX));
     if (prefs == null) {
-        Log.d(TAG, String.format("%s PREF  = NULL ", HYPE_PUB_SUB_LOG_PREFIX));
+        Log.i(TAG, String.format("%s PREF  = NULL ", HYPE_PUB_SUB_LOG_PREFIX));
         return;
     }
     else{
-        Log.d(TAG, String.format("%s PREF has DATA", HYPE_PUB_SUB_LOG_PREFIX));
+        Log.i(TAG, String.format("%s PREF has DATA", HYPE_PUB_SUB_LOG_PREFIX));
     }
-    // read in json array from prefs to fill list
-    subscribedChannels = new ArrayList<>();
+
     String jsonArrayString = prefs.getString(SUBSCRIBED_CHANNELS, "");
-    Log.d(TAG, String.format("%s jsonArrayString of Subscribed Channels : " + jsonArrayString, HYPE_PUB_SUB_LOG_PREFIX));
+    Log.i(TAG, String.format("%s jsonArrayString of Subscribed Channels : " + jsonArrayString, HYPE_PUB_SUB_LOG_PREFIX));
     if (!TextUtils.isEmpty(jsonArrayString)) {
         try {
             JSONArray jsonArray = new JSONArray(jsonArrayString);
             if (jsonArray.length() > 0) {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     String next= jsonArray.getString(i);
-                    Log.d(TAG, String.format("%s next channel: " + next, HYPE_PUB_SUB_LOG_PREFIX));
-                    subscribedChannels.add(next);
+                    Log.i(TAG, String.format("%s next channel: " + next, HYPE_PUB_SUB_LOG_PREFIX));
                     try {
                         manuallySubscribe(next);
                     }
                     catch (Exception e){
-                        Log.e(TAG, String.format("%s Error occured in resubscribe method : " + e.getMessage(), HYPE_PUB_SUB_LOG_PREFIX));
+                        Log.e(TAG, String.format("%s Error occured in reSubscribeToAllChannels : " + e.getMessage(), HYPE_PUB_SUB_LOG_PREFIX));
                     }
                 }
             }

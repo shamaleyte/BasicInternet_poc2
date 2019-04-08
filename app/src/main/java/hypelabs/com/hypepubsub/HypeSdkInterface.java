@@ -60,18 +60,9 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
                 HYPE_SDK_INTERFACE_LOG_PREFIX,
                 HpsGenericUtils.getLogStrFromInstance(Hype.getHostInstance())));
         hasHypeStarted = true;
+        hps.sendHypeStartedMessage();
         network.setOwnClient(Hype.getHostInstance());
 
-
-
-        /* Broadcasting This Message for the Main Class */
-        /*Intent broadcastIntent = new Intent();
-        Bundle bb = new Bundle();
-        bb.putString("hypeStarted", "started");
-        broadcastIntent.putExtras(bb);
-        broadcastIntent.setAction("Hype_Status");
-        MainActivity.getContext().sendBroadcast(broadcastIntent);
-        */
     }
 
     @Override
@@ -180,6 +171,8 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
             }
         });
         t.start();
+
+
     }
 
     @Override
@@ -200,6 +193,8 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
 
     @Override
     public void onHypeMessageReceived(Message var1, Instance var2) {
+        Log.i(TAG, String.format("%s onHypeMessageReceived !!!", HYPE_SDK_INTERFACE_LOG_PREFIX));
+
         final Message receivedMsg = var1;
         final Instance originatorInstance = var2;
 

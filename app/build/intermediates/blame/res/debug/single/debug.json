@@ -48,12 +48,12 @@
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xxhdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_in_bottom.xml.flat",
-        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\anim\\abc_slide_in_bottom.xml"
-    },
-    {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_in_bottom.xml.flat",
+        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
@@ -112,12 +112,12 @@
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-mdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_arrow_drop_right_black_24dp.xml.flat",
-        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
-    },
-    {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xhdpi-v4\\abc_text_select_handle_left_mtrl_dark.png"
+    },
+    {
+        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_arrow_drop_right_black_24dp.xml.flat",
+        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
     },
     {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
@@ -168,12 +168,12 @@
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xhdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xxhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
-    },
-    {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-mdpi-v4\\abc_text_select_handle_right_mtrl_dark.png"
+    },
+    {
+        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xxhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
@@ -188,12 +188,12 @@
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-hdpi-v4\\abc_text_select_handle_middle_mtrl_light.png"
     },
     {
-        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tooltip_frame_dark.xml.flat",
-        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable\\tooltip_frame_dark.xml"
-    },
-    {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xhdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tooltip_frame_dark.xml.flat",
+        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable\\tooltip_frame_dark.xml"
     },
     {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_media_action.xml.flat",
@@ -224,12 +224,12 @@
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_36dp.png"
     },
     {
-        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
-        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_dark.9.png"
-    },
-    {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ratingbar_indicator_material.xml.flat",
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable\\abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
+        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_dark.9.png"
     },
     {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_middle_mtrl_dark.png.flat",
@@ -252,12 +252,12 @@
         "source": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\src\\main\\res\\layout\\activity_messages.xml"
     },
     {
-        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-mdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
-    },
-    {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
         "source": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-mdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal.9.png.flat",
@@ -296,12 +296,12 @@
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\layout\\abc_screen_content_include.xml"
     },
     {
-        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
-        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
-    },
-    {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xxhdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
+        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
@@ -504,20 +504,20 @@
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_16dp.png"
     },
     {
-        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_tab_indicator_material.xml.flat",
-        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable\\abc_tab_indicator_material.xml"
-    },
-    {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_right_mtrl_light.png.flat",
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-hdpi-v4\\abc_text_select_handle_right_mtrl_light.png"
     },
     {
-        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\fef354b8b0776bd082ce24432363a45e\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
+        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_tab_indicator_material.xml.flat",
+        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable\\abc_tab_indicator_material.xml"
     },
     {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-hdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\fef354b8b0776bd082ce24432363a45e\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_fade_out.xml.flat",
@@ -724,12 +724,12 @@
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\color\\abc_tint_default.xml"
     },
     {
-        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_menu_layout.xml.flat",
-        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\layout\\abc_action_menu_layout.xml"
-    },
-    {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_star_half_black_48dp.png.flat",
         "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_48dp.png"
+    },
+    {
+        "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_menu_layout.xml.flat",
+        "source": "C:\\Users\\Shamaleyte\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6b8edcccc96bb6d5de44e7b70e7ae324\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
         "merged": "C:\\Users\\Shamaleyte\\Desktop\\Norway\\BasicInternet\\POC2\\pubsub.android-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
