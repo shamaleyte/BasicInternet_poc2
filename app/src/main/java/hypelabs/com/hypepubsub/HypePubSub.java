@@ -267,6 +267,8 @@ public void sendBroadcastMsgsRequest(){
                 HpsGenericUtils.getLogStrFromInstance(Hype.getHostInstance())));
     }
 
+
+
     synchronized void updateOwnSubscriptions() {
         Log.i(TAG, String.format("%s Executing updateManagedServices (%d subscriptions)",
                 HYPE_PUB_SUB_LOG_PREFIX, ownSubscriptions.size()));

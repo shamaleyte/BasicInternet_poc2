@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.hypelabs.hype.Error;
 import com.hypelabs.hype.Hype;
@@ -60,8 +61,9 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
                 HYPE_SDK_INTERFACE_LOG_PREFIX,
                 HpsGenericUtils.getLogStrFromInstance(Hype.getHostInstance())));
         hasHypeStarted = true;
-        hps.sendHypeStartedMessage();
+
         network.setOwnClient(Hype.getHostInstance());
+        hps.sendHypeStartedMessage();
 
     }
 
@@ -115,7 +117,8 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
     @Override
     public void onHypeInstanceFound(Instance var1) {
         String instanceLogIdStr = HpsGenericUtils.getLogStrFromInstance(var1);
-
+        Log.i(TAG, String.format("%s Hype SDK unresolved instance found: %s",
+                HYPE_SDK_INTERFACE_LOG_PREFIX, instanceLogIdStr));
         if(!var1.isResolved()) {
             Log.i(TAG, String.format("%s Hype SDK unresolved instance found: %s",
                     HYPE_SDK_INTERFACE_LOG_PREFIX, instanceLogIdStr));
@@ -171,7 +174,6 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
             }
         });
         t.start();
-
 
     }
 
