@@ -544,6 +544,8 @@ private class publishServiceAction implements IServiceAction {
                 }
 
                 hps.issuePublishReq(serviceName, msg);
+                String pair = serviceName + ";" + msg;
+                cachedMessages.add(pair);
             }
 
             @Override
@@ -631,7 +633,6 @@ protected void storeMessagesToPrefs() {
         return;
     }
 
-
     // store list as jsonarray
     JSONArray jsonArray = new JSONArray();
     for (String z : cachedMessages) {
@@ -668,7 +669,7 @@ private void loadDataFromPrefs(String dataset) {
                     Log.i(TAG, String.format("%s next : " + next, HYPE_PUB_SUB_LOG_PREFIX));
                     cachedMessages.add(next);
                     messagesList.add(next);
-                    if (adapter != null) adapter.notifyDataSetChanged();
+                    if (adapter != null && dataset.equals(CHANNEL_MESSAGES)) adapter.notifyDataSetChanged();
                 }
             }
         } catch (JSONException e) {
@@ -700,8 +701,14 @@ protected void storeChannelsToPrefs(){
 protected void broadcastAllMessages(){
     Log.i(TAG, String.format("%s Broadcasting all of the msgs one by one ()", HYPE_PUB_SUB_LOG_PREFIX));
    for(String next : messagesList) {
-       Log.i(TAG, String.format("%s broadcasting next msg : " + next, HYPE_PUB_SUB_LOG_PREFIX));
-       hps.issuePublishReq("hype-jobs", next);
+
+       String[] info = next.split(";");
+       if(info.length == 2) {
+           String channel = info[0];
+           String msg = info[1];
+           Log.i(TAG, String.format("%s broadcasting next msg : " + msg + " to the channel " + channel, HYPE_PUB_SUB_LOG_PREFIX));
+           hps.issuePublishReq(channel, msg);
+       }
    }
 }
 protected void reSubscribeToAllChannels(){

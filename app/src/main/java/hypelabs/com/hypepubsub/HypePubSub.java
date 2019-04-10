@@ -129,12 +129,24 @@ public class HypePubSub
             updateManagedServicesUI();
         }
 
-        Log.i(TAG, String.format("%s Adding instance %s to the list of subscribers of the service 0x%s",
+        Log.i(TAG, String.format("%s Adding instancex %s to the list of subscribers of the service 0x%s",
                 HYPE_PUB_SUB_LOG_PREFIX, HpsGenericUtils.getLogStrFromInstance(requesterInstance),
                 BinaryUtils.byteArrayToHexString(serviceKey)));
 
+
+        Log.i(TAG, String.format("%s SXXXXX!" + HpsGenericUtils.getIdStringFromClient(network.ownClient) ,
+                HYPE_PUB_SUB_LOG_PREFIX));
+
         serviceManager.subscribers.addClient(new Client(requesterInstance));
-        sendBroadcastMsgsRequest();
+        if(HpsGenericUtils.getLogStrFromInstance(requesterInstance).contains(HpsGenericUtils.getIdStringFromClient(network.ownClient)))
+            Log.i(TAG, String.format("%s SKIP this instance because it is the device itself!",
+                    HYPE_PUB_SUB_LOG_PREFIX));
+        else {
+            Log.i(TAG, String.format("%s Broadcast all messages for this NEW instance", HYPE_PUB_SUB_LOG_PREFIX));
+            sendBroadcastMsgsRequest();
+        }
+
+
     }
 
     synchronized void processUnsubscribeReq(byte serviceKey[], Instance requesterInstance) {
@@ -243,18 +255,18 @@ public class HypePubSub
             }
         }
     }
-public void sendBroadcastMsgsRequest(){
-    /* Here we can push all the messages we have */
-    /* Broadcasting This Message for the Main Class */
-    Log.d(TAG, String.format("%s Subscribers found - so let's publish the messages that we have", HYPE_PUB_SUB_LOG_PREFIX));
+    public void sendBroadcastMsgsRequest(){
+        /* Here we can push all the messages we have */
+        /* Broadcasting This Message for the Main Class */
+        Log.d(TAG, String.format("%s Subscribers found - so let's publish the messages that we have", HYPE_PUB_SUB_LOG_PREFIX));
 
-    Intent broadcastIntent = new Intent();
-    Bundle bb = new Bundle();
-    bb.putString(BROADCAST_ALL_MSGS, "all-available-msgs");
-    broadcastIntent.putExtras(bb);
-    broadcastIntent.setAction("Broadcast_All_Msgs");
-    MainActivity.getContext().sendBroadcast(broadcastIntent);
-}
+        Intent broadcastIntent = new Intent();
+        Bundle bb = new Bundle();
+        bb.putString(BROADCAST_ALL_MSGS, "all-available-msgs");
+        broadcastIntent.putExtras(bb);
+        broadcastIntent.setAction("Broadcast_All_Msgs");
+        MainActivity.getContext().sendBroadcast(broadcastIntent);
+    }
     public void sendHypeStartedMessage(){
         /* Broadcasting This Message for the Main Class */
         Intent broadcastIntent = new Intent();
