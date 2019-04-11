@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-52:12
+ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-51:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Shamaleyte\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\6b8edcccc96bb6d5de44e7b70e7ae324\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Shamaleyte\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\7f007bd856c4e5f855eba38dfd0f61c8\AndroidManifest.xml:2:1-11:12
 MERGED from [:hype] C:\Users\Shamaleyte\.gradle\caches\transforms-1\files-1.1\Hype.aar\cbf56e8c5460471808e94ec1c95632eb\AndroidManifest.xml:2:1-21:12
@@ -16,20 +16,20 @@ MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Shamaleyte\
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Shamaleyte\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\d935241a359fa19a6607a38701b5afb7\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Shamaleyte\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\fef354b8b0776bd082ce24432363a45e\AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Shamaleyte\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\78e08abc50a8d511ca55ecb59621d04a\AndroidManifest.xml:17:1-30:12
-INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-52:12
-INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-52:12
+INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-51:12
 	package
 		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:3:5-38
 		INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-52:12
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-51:12
 		INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-52:12
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:1-51:12
 		INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:2:11-69
@@ -70,7 +70,7 @@ ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-
 	android:name
 		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:17:19-63
 application
-ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:19:5-50:19
+ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:19:5-49:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Shamaleyte\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\6b8edcccc96bb6d5de44e7b70e7ae324\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Shamaleyte\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\6b8edcccc96bb6d5de44e7b70e7ae324\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Shamaleyte\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\7f007bd856c4e5f855eba38dfd0f61c8\AndroidManifest.xml:9:5-20
@@ -108,53 +108,53 @@ MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Shamaleyte\.gradle\c
 	android:theme
 		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:25:9-40
 activity#hypelabs.com.hypepubsub.MainActivity
-ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:26:9-33:20
+ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:26:9-32:20
 	android:screenOrientation
 		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:27:19-55
 	android:name
 		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:26:19-47
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:28:13-32:29
+ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:28:13-31:29
 action#android.intent.action.MAIN
 ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:29:17-69
 	android:name
 		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:29:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:31:17-77
+ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:30:17-77
 	android:name
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:31:27-74
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:30:27-74
 activity#hypelabs.com.hypepubsub.SubscriptionsListActivity
-ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:34:9-37:20
+ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:33:9-36:20
 	android:screenOrientation
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:36:19-55
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:35:19-55
 	android:parentActivityName
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:35:19-61
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:34:19-61
 	android:name
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:34:19-60
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:33:19-60
 activity#hypelabs.com.hypepubsub.ClientsListActivity
-ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:38:9-41:20
+ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:37:9-40:20
 	android:screenOrientation
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:40:19-55
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:39:19-55
 	android:parentActivityName
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:39:19-61
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:38:19-61
 	android:name
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:38:19-54
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:37:19-54
 activity#hypelabs.com.hypepubsub.ServiceManagersListActivity
-ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:42:9-45:20
+ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:41:9-44:20
 	android:screenOrientation
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:44:19-55
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:43:19-55
 	android:parentActivityName
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:43:19-61
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:42:19-61
 	android:name
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:42:19-62
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:41:19-62
 activity#hypelabs.com.hypepubsub.MessagesActivity
-ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:46:9-49:20
+ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:45:9-48:20
 	android:screenOrientation
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:48:19-55
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:47:19-55
 	android:parentActivityName
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:47:19-74
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:46:19-74
 	android:name
-		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:46:19-51
+		ADDED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml:45:19-51
 uses-sdk
 INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Shamaleyte\Desktop\Norway\BasicInternet\POC2\pubsub.android-master\app\src\main\AndroidManifest.xml

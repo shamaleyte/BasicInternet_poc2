@@ -12,13 +12,13 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ListIterator;
 
 import com.hypelabs.hype.Hype;
 import com.hypelabs.hype.Instance;
 
-public class HypePubSub
-{
+public class HypePubSub {
     // Members
     final SubscriptionsList ownSubscriptions;
     final ServiceManagersList managedServices;
@@ -29,19 +29,20 @@ public class HypePubSub
 
 
     // Private
-    private static final String TAG =  HypePubSub.class.getName();
+    private static final String TAG = HypePubSub.class.getName();
     private static final String HYPE_PUB_SUB_LOG_PREFIX = HpsConstants.LOG_PREFIX + "<BasicInternet> ";
     final private Network network = Network.getInstance();
     private int notificationID = 1;
 
     final private static HypePubSub hps = new HypePubSub(); // Early loading to avoid thread-safety issues
-    public static HypePubSub getInstance()
-    {
+
+    public static HypePubSub getInstance() {
         return hps;
     }
+
     private static final String BROADCAST_ALL_MSGS = "broadcast_all_msgs";
-    private HypePubSub()
-    {
+
+    private HypePubSub() {
         this.ownSubscriptions = new SubscriptionsList();
         this.managedServices = new ServiceManagersList();
     }
@@ -57,15 +58,14 @@ public class HypePubSub
         Client managerClient = network.determineClientResponsibleForService(serviceKey);
         Log.i(TAG, String.format("%s managerClient object created.", HYPE_PUB_SUB_LOG_PREFIX));
         boolean wasSubscriptionAdded = ownSubscriptions.addSubscription(new Subscription(serviceName, managerClient));
-        if(!wasSubscriptionAdded) {
+        if (!wasSubscriptionAdded) {
             return false;
         }
 
-        if(HpsGenericUtils.areClientsEqual(network.ownClient, managerClient)) {
+        if (HpsGenericUtils.areClientsEqual(network.ownClient, managerClient)) {
             printIssueReqToHostInstanceLog("Subscribe", serviceName);
             processSubscribeReq(serviceKey, network.ownClient.instance); // bypass protocol manager
-        }
-        else {
+        } else {
             Protocol.sendSubscribeMsg(serviceKey, managerClient.instance);
         }
         return true;
@@ -75,16 +75,15 @@ public class HypePubSub
         byte serviceKey[] = HpsGenericUtils.stringHash(serviceName);
         Client managerClient = network.determineClientResponsibleForService(serviceKey);
 
-        boolean wasSubscriptionRemoved =  ownSubscriptions.removeSubscriptionWithServiceName(serviceName);
-        if(!wasSubscriptionRemoved) {
+        boolean wasSubscriptionRemoved = ownSubscriptions.removeSubscriptionWithServiceName(serviceName);
+        if (!wasSubscriptionRemoved) {
             return false;
         }
 
-        if(HpsGenericUtils.areClientsEqual(network.ownClient, managerClient)) {
+        if (HpsGenericUtils.areClientsEqual(network.ownClient, managerClient)) {
             printIssueReqToHostInstanceLog("Unsubscribe", serviceName);
             processUnsubscribeReq(serviceKey, network.ownClient.instance); // bypass protocol manager
-        }
-        else {
+        } else {
             Protocol.sendUnsubscribeMsg(serviceKey, managerClient.instance);
         }
         return true;
@@ -94,12 +93,11 @@ public class HypePubSub
         byte serviceKey[] = HpsGenericUtils.stringHash(serviceName);
         Client managerClient = network.determineClientResponsibleForService(serviceKey);
 
-        if(HpsGenericUtils.areClientsEqual(network.ownClient, managerClient)) {
+        if (HpsGenericUtils.areClientsEqual(network.ownClient, managerClient)) {
             printIssueReqToHostInstanceLog("Publish", serviceName);
             processPublishReq(serviceKey, msg); // bypass protocol manager
             Log.i(TAG, String.format("%s issuePublishReq IF ", HYPE_PUB_SUB_LOG_PREFIX));
-        }
-        else {
+        } else {
             Log.i(TAG, String.format("%s issuePublishReq ELSE ", HYPE_PUB_SUB_LOG_PREFIX));
             Protocol.sendPublishMsg(serviceKey, managerClient.instance, msg);
         }
@@ -112,7 +110,7 @@ public class HypePubSub
     synchronized void processSubscribeReq(byte serviceKey[], Instance requesterInstance) {
         Client managerClient = network.determineClientResponsibleForService(serviceKey);
 
-        if( ! HpsGenericUtils.areClientsEqual(managerClient, network.ownClient)) {
+        if (!HpsGenericUtils.areClientsEqual(managerClient, network.ownClient)) {
             Log.i(TAG, String.format("%s Another instance should be responsible for the service 0x%s: %s",
                     HYPE_PUB_SUB_LOG_PREFIX, BinaryUtils.byteArrayToHexString(serviceKey),
                     HpsGenericUtils.getLogStrFromClient(managerClient)));
@@ -120,7 +118,7 @@ public class HypePubSub
         }
 
         ServiceManager serviceManager = managedServices.findServiceManagerWithKey(serviceKey);
-        if(serviceManager == null ) { // If the service does not exist we create it.
+        if (serviceManager == null) { // If the service does not exist we create it.
             Log.i(TAG, String.format("%s Processing Subscribe request for non-existent ServiceManager 0x%s. ServiceManager will be created.",
                     HYPE_PUB_SUB_LOG_PREFIX, BinaryUtils.byteArrayToHexString(serviceKey)));
 
@@ -134,14 +132,13 @@ public class HypePubSub
                 BinaryUtils.byteArrayToHexString(serviceKey)));
 
 
-        Log.i(TAG, String.format("%s SXXXXX!" + HpsGenericUtils.getIdStringFromClient(network.ownClient) ,
+        Log.i(TAG, String.format("%s SXXXXX!" + HpsGenericUtils.getIdStringFromClient(network.ownClient),
                 HYPE_PUB_SUB_LOG_PREFIX));
 
         serviceManager.subscribers.addClient(new Client(requesterInstance));
-        if(HpsGenericUtils.getLogStrFromInstance(requesterInstance).contains(HpsGenericUtils.getIdStringFromClient(network.ownClient)))
-            Log.i(TAG, String.format("%s SKIP this instance because it is the device itself!",
-                    HYPE_PUB_SUB_LOG_PREFIX));
-        else {
+        if (HpsGenericUtils.getLogStrFromInstance(requesterInstance).contains(HpsGenericUtils.getIdStringFromClient(network.ownClient))) {
+            Log.i(TAG, String.format("%s SKIP this instance because it is the device itself!", HYPE_PUB_SUB_LOG_PREFIX));
+        } else {
             Log.i(TAG, String.format("%s Broadcast all messages for this NEW instance", HYPE_PUB_SUB_LOG_PREFIX));
             sendBroadcastMsgsRequest();
         }
@@ -152,7 +149,7 @@ public class HypePubSub
     synchronized void processUnsubscribeReq(byte serviceKey[], Instance requesterInstance) {
         ServiceManager serviceManager = managedServices.findServiceManagerWithKey(serviceKey);
 
-        if(serviceManager == null) {
+        if (serviceManager == null) {
             Log.i(TAG, String.format("%s Processing Unsubscribe request for non-existent ServiceManager 0x%s. Nothing will be done",
                     HYPE_PUB_SUB_LOG_PREFIX, BinaryUtils.byteArrayToHexString(serviceKey)));
             return;
@@ -164,7 +161,7 @@ public class HypePubSub
 
         serviceManager.subscribers.removeClientWithInstance(requesterInstance);
 
-        if(serviceManager.subscribers.size() == 0) {
+        if (serviceManager.subscribers.size() == 0) {
             managedServices.removeServiceManagerWithKey(serviceKey);
             updateManagedServicesUI(); // Updated UI after removing a managed service
         }
@@ -173,24 +170,23 @@ public class HypePubSub
     synchronized void processPublishReq(byte serviceKey[], String msg) {
         ServiceManager serviceManager = managedServices.findServiceManagerWithKey(serviceKey);
 
-        if(serviceManager == null) {
+        if (serviceManager == null) {
             Log.i(TAG, String.format("%s Processing Publish request for non-existent ServiceManager 0x%s. Nothing will be done.",
                     HYPE_PUB_SUB_LOG_PREFIX, BinaryUtils.byteArrayToHexString(serviceKey)));
             return;
         }
 
         ListIterator<Client> it = serviceManager.subscribers.listIterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             Client client = it.next();
-            if(client == null)
+            if (client == null)
                 continue;
 
-            if(HpsGenericUtils.areClientsEqual(network.ownClient, client)) {
+            if (HpsGenericUtils.areClientsEqual(network.ownClient, client)) {
                 Log.i(TAG, String.format("%s Publishing info from service 0x%s to Host instance",
                         HYPE_PUB_SUB_LOG_PREFIX, BinaryUtils.byteArrayToHexString(serviceKey)));
                 processInfoMsg(serviceKey, msg);
-            }
-            else {
+            } else {
                 Log.i(TAG, String.format("%s Publishing info from service 0x%s to %s",
                         HYPE_PUB_SUB_LOG_PREFIX, BinaryUtils.byteArrayToHexString(serviceKey),
                         HpsGenericUtils.getLogStrFromClient(client)));
@@ -202,7 +198,7 @@ public class HypePubSub
     void processInfoMsg(byte serviceKey[], String msg) {
         Subscription subscription = ownSubscriptions.findSubscriptionWithServiceKey(serviceKey);
 
-        if(subscription == null) {
+        if (subscription == null) {
             Log.i(TAG, String.format("%s Info received from the unsubscribed service 0x%s: %s",
                     HYPE_PUB_SUB_LOG_PREFIX, BinaryUtils.byteArrayToHexString(serviceKey),
                     msg));
@@ -216,11 +212,12 @@ public class HypePubSub
         String notificationText = subscription.serviceName + ": " + msg;
         displayNotification(MainActivity.getContext(), notificationText, notificationID);
 
+        String pair = subscription.serviceName + ";" + msg;
         /* Broadcasting This Message for the Main Class */
         Log.d(TAG, String.format("%s Broadcasting...()" + msg, HYPE_PUB_SUB_LOG_PREFIX));
         Intent broadcastIntent = new Intent();
         Bundle bb = new Bundle();
-        bb.putString("message", msg);
+        bb.putString("message", pair);
         broadcastIntent.putExtras(bb);
         broadcastIntent.setAction("Published_Message");
         MainActivity.getContext().sendBroadcast(broadcastIntent);
@@ -235,7 +232,7 @@ public class HypePubSub
 
         ListIterator<ServiceManager> it = managedServices.listIterator();
 
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             ServiceManager managedService = it.next();
 
             // Check if a new Hype client with a closer key to this service key has appeared. If this happens
@@ -245,7 +242,7 @@ public class HypePubSub
             Log.i(TAG, String.format("%s Analyzing ServiceManager from service 0x%s",
                     HYPE_PUB_SUB_LOG_PREFIX, BinaryUtils.byteArrayToHexString(managedService.serviceKey)));
 
-            if( ! HpsGenericUtils.areClientsEqual(newManagerClient, network.ownClient)) {
+            if (!HpsGenericUtils.areClientsEqual(newManagerClient, network.ownClient)) {
                 Log.i(TAG, String.format("%s The service 0x%s will be managed by: %s. ServiceManager will be removed",
                         HYPE_PUB_SUB_LOG_PREFIX, BinaryUtils.byteArrayToHexString(managedService.serviceKey),
                         HpsGenericUtils.getLogStrFromClient(newManagerClient)));
@@ -255,7 +252,8 @@ public class HypePubSub
             }
         }
     }
-    public void sendBroadcastMsgsRequest(){
+
+    public void sendBroadcastMsgsRequest() {
         /* Here we can push all the messages we have */
         /* Broadcasting This Message for the Main Class */
         Log.d(TAG, String.format("%s Subscribers found - so let's publish the messages that we have", HYPE_PUB_SUB_LOG_PREFIX));
@@ -267,7 +265,8 @@ public class HypePubSub
         broadcastIntent.setAction("Broadcast_All_Msgs");
         MainActivity.getContext().sendBroadcast(broadcastIntent);
     }
-    public void sendHypeStartedMessage(){
+
+    public void sendHypeStartedMessage() {
         /* Broadcasting This Message for the Main Class */
         Intent broadcastIntent = new Intent();
         Bundle bb = new Bundle();
@@ -279,14 +278,28 @@ public class HypePubSub
                 HpsGenericUtils.getLogStrFromInstance(Hype.getHostInstance())));
     }
 
+    public void addChannelMessages(String channel, List<String> channelMessages){
 
+
+
+        byte serviceKey[] = HpsGenericUtils.stringHash(channel);
+        Subscription subscription = ownSubscriptions.findSubscriptionWithServiceKey(serviceKey);
+
+        for(String msg : channelMessages){
+            Log.i(TAG, String.format("%s Manually Adding message " + msg + " to channel : " + channel,
+                    HpsGenericUtils.getLogStrFromInstance(Hype.getHostInstance())));
+            String msgWithTimeStamp = HpsGenericUtils.getTimeStamp() + ": " + msg;
+            subscription.receivedMsg.add(0, msgWithTimeStamp);
+        }
+        updateMessagesUI();
+    }
 
     synchronized void updateOwnSubscriptions() {
         Log.i(TAG, String.format("%s Executing updateManagedServices (%d subscriptions)",
                 HYPE_PUB_SUB_LOG_PREFIX, ownSubscriptions.size()));
 
         ListIterator<Subscription> it = ownSubscriptions.listIterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             Subscription subscription = it.next();
             Client newManagerClient = network.determineClientResponsibleForService(subscription.serviceKey);
 
@@ -294,31 +307,30 @@ public class HypePubSub
                     HYPE_PUB_SUB_LOG_PREFIX, HpsGenericUtils.getLogStrFromSubscription(subscription)));
 
             // If there is a node with a closer key to the service key we change the manager
-            if( ! HpsGenericUtils.areClientsEqual(newManagerClient, subscription.manager)) {
+            if (!HpsGenericUtils.areClientsEqual(newManagerClient, subscription.manager)) {
                 Log.i(TAG, String.format("%s The manager of the subscribed service '%s' has changed: %s. A new Subscribe message will be issued",
                         HYPE_PUB_SUB_LOG_PREFIX, subscription.serviceName,
                         HpsGenericUtils.getLogStrFromClient(newManagerClient)));
 
                 subscription.manager = newManagerClient;
 
-                if(HpsGenericUtils.areClientsEqual(network.ownClient, newManagerClient)){
+                if (HpsGenericUtils.areClientsEqual(network.ownClient, newManagerClient)) {
                     processSubscribeReq(subscription.serviceKey, network.ownClient.instance); // bypass protocol manager
-                }
-                else {
+                } else {
                     Protocol.sendSubscribeMsg(subscription.serviceKey, newManagerClient.instance);
                 }
             }
         }
     }
 
-    synchronized void  removeSubscriptionsFromLostInstance(Instance instance) {
+    synchronized void removeSubscriptionsFromLostInstance(Instance instance) {
         Log.i(TAG, "Executing removeSubscriptionsFromLostInstance");
         ArrayList<byte[]> keysOfServicesToUnsubscribe = new ArrayList<>();
-        for (int i=0; i < managedServices.size(); i++) {
+        for (int i = 0; i < managedServices.size(); i++) {
             keysOfServicesToUnsubscribe.add(managedServices.get(i).serviceKey);
         }
 
-        for (int i=0; i < keysOfServicesToUnsubscribe.size(); i++) {
+        for (int i = 0; i < keysOfServicesToUnsubscribe.size(); i++) {
             processUnsubscribeReq(keysOfServicesToUnsubscribe.get(i), instance);
         }
     }
@@ -338,6 +350,8 @@ public class HypePubSub
         MessagesActivity messagesActivity = MessagesActivity.getDefaultInstance();
         if (messagesActivity != null) {
             messagesActivity.updateInterface();
+            Log.i(TAG, String.format("%s UPDATED RELATED LIST VIEWS for each channel successfully!",
+                    HpsGenericUtils.getLogStrFromInstance(Hype.getHostInstance())));
         }
     }
 

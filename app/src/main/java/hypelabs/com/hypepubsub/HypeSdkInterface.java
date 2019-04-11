@@ -15,8 +15,7 @@ import com.hypelabs.hype.MessageObserver;
 import com.hypelabs.hype.NetworkObserver;
 import com.hypelabs.hype.StateObserver;
 
-public class HypeSdkInterface implements NetworkObserver, StateObserver, MessageObserver
-{
+public class HypeSdkInterface implements NetworkObserver, StateObserver, MessageObserver {
     // Members
     boolean hasHypeStarted = false;
     boolean hasHypeFailed = false;
@@ -31,7 +30,10 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
     final private Network network = Network.getInstance();
 
     private static HypeSdkInterface hypeSdkInterface = new HypeSdkInterface();
-    public static HypeSdkInterface getInstance() { return hypeSdkInterface; }
+
+    public static HypeSdkInterface getInstance() {
+        return hypeSdkInterface;
+    }
 
     protected void requestHypeToStart(Context context) {
         Hype.setAppIdentifier(HpsConstants.APP_IDENTIFIER);
@@ -71,12 +73,12 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
     public void onHypeStop(Error var1) {
         hasHypeStopped = true;
         hypeStoppedMsg = "";
-        if(var1 != null) {
+        if (var1 != null) {
             hypeStoppedMsg = String.format("Suggestion: %s\nDescription: %s\nReason: %s",
                     var1.getSuggestion(), var1.getDescription(), var1.getReason());
         }
 
-        Log.i(TAG,  String.format("%s Hype SDK stopped!", HYPE_SDK_INTERFACE_LOG_PREFIX));
+        Log.i(TAG, String.format("%s Hype SDK stopped!", HYPE_SDK_INTERFACE_LOG_PREFIX));
         requestHypeToStop();
     }
 
@@ -96,7 +98,7 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
 
     @Override
     public void onHypeReady() {
-        Log.i( TAG, String.format("%s Hype SDK is ready", HYPE_SDK_INTERFACE_LOG_PREFIX));
+        Log.i(TAG, String.format("%s Hype SDK is ready", HYPE_SDK_INTERFACE_LOG_PREFIX));
     }
 
     @Override
@@ -119,14 +121,13 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
         String instanceLogIdStr = HpsGenericUtils.getLogStrFromInstance(var1);
         Log.i(TAG, String.format("%s Hype SDK unresolved instance found: %s",
                 HYPE_SDK_INTERFACE_LOG_PREFIX, instanceLogIdStr));
-        if(!var1.isResolved()) {
+        if (!var1.isResolved()) {
             Log.i(TAG, String.format("%s Hype SDK unresolved instance found: %s",
                     HYPE_SDK_INTERFACE_LOG_PREFIX, instanceLogIdStr));
             Log.i(TAG, String.format("%s Resolving Hype SDK instance: %s",
                     HYPE_SDK_INTERFACE_LOG_PREFIX, instanceLogIdStr));
             Hype.resolve(var1);
-        }
-        else {
+        } else {
             Log.i(TAG, String.format("%s Hype SDK resolved instance found: %s",
                     HYPE_SDK_INTERFACE_LOG_PREFIX, instanceLogIdStr));
 
@@ -225,11 +226,10 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
 
     @Override
     public void onHypeMessageSent(MessageInfo var1, Instance var2, float var3, boolean var4) {
-        if(! var4) {
+        if (!var4) {
             Log.i(TAG, String.format("%s Hype SDK message %d sending percentage: %f",
                     HYPE_SDK_INTERFACE_LOG_PREFIX, var1.getIdentifier(), (var3 * 100)));
-        }
-        else {
+        } else {
             Log.i(TAG, String.format("%s Hype SDK message %d fully sent",
                     HYPE_SDK_INTERFACE_LOG_PREFIX, var1.getIdentifier()));
         }
@@ -237,11 +237,10 @@ public class HypeSdkInterface implements NetworkObserver, StateObserver, Message
 
     @Override
     public void onHypeMessageDelivered(MessageInfo var1, Instance var2, float var3, boolean var4) {
-        if(! var4) {
+        if (!var4) {
             Log.i(TAG, String.format("%s Hype SDK message %d delivered percentage: %f",
                     HYPE_SDK_INTERFACE_LOG_PREFIX, var1.getIdentifier(), (var3 * 100)));
-        }
-        else {
+        } else {
             Log.i(TAG, String.format("%s Hype SDK message %d fully delivered",
                     HYPE_SDK_INTERFACE_LOG_PREFIX, var1.getIdentifier()));
         }

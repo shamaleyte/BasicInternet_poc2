@@ -7,8 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import java.lang.ref.WeakReference;
 
 
-public class ClientsListActivity extends AppCompatActivity
-{
+public class ClientsListActivity extends AppCompatActivity {
     final private ClientsList activityClientsList = new ClientsList();
     private ListView clientsListView;
     private static WeakReference<ClientsListActivity> defaultInstance;
@@ -31,7 +30,7 @@ public class ClientsListActivity extends AppCompatActivity
     private void setClientsAdapterFromNetworkClients() {
         ClientsAdapter clientAdapter = getClientsAdapter();
         clientAdapter.clear();
-        for(int i=0; i<network.networkClients.size();i++) {
+        for (int i = 0; i < network.networkClients.size(); i++) {
             clientAdapter.add(network.networkClients.get(i));
         }
     }
