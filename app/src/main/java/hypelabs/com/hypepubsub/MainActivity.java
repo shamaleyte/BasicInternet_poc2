@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     private List<Map<String, List<String>>> channelMessages = new ArrayList<Map<String, List<String>>>();
     private Map<String, List<String>> channelMessenger = new HashMap<String, List<String>>();//This is one instance of the  map you want to store in the above list.
 
-
     private List<String> messagesList = new ArrayList<>(Arrays.asList(messages));
     ArrayAdapter<String> adapter;
     private ListView mListView;
@@ -502,6 +501,7 @@ public class MainActivity extends AppCompatActivity {
                 uiData.addSubscribedService(MainActivity.this, serviceName);
                 uiData.removeUnsubscribedService(MainActivity.this, serviceName);
                 hps.addChannelMessages(serviceName, channelMessenger.get(serviceName));
+
             }
 
             // Add related channel message to the Demo's subscription message list
@@ -692,16 +692,33 @@ public class MainActivity extends AppCompatActivity {
         }
         addMessageToChannel(serviceMessage, serviceName);
     }
-    protected void addMessageToChannel(String serviceMessage, String serviceName){
+
+    protected void addMessageToChannel(String serviceMessage, String serviceName) {
         Log.i(TAG, String.format("%s Adding " + serviceMessage + " to the channel: " + serviceName, HYPE_PUB_SUB_LOG_PREFIX));
-        if(channelMessenger.containsKey(serviceName))
-            channelMessenger.get(serviceName).add(serviceMessage);
-        else{
-            List<String> newList = new ArrayList<String>();
-            newList.add(serviceMessage);
-            channelMessenger.put(serviceName, newList);
+        if (!isDuplicateMessage(serviceMessage, serviceName)) {
+            if (channelMessenger.containsKey(serviceName))
+                channelMessenger.get(serviceName).add(serviceMessage);
+            else {
+
+                List<String> newList = new ArrayList<String>();
+                newList.add(serviceMessage);
+                channelMessenger.put(serviceName, newList);
+            }
         }
 
+    }
+
+    protected boolean isDuplicateMessage(String serviceMessage, String serviceName) {
+        if (channelMessenger.containsKey(serviceName)) {
+            List<String> newList = channelMessenger.get(serviceName);
+            for (int a = 0; a < newList.size(); a++) {
+                if (newList.get(a).equals(serviceMessage)) {
+                    Log.i(TAG, String.format("%s duplicate message for this channel - so ignore it", HYPE_PUB_SUB_LOG_PREFIX));
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     protected void storeChannelsToPrefs() {
@@ -758,7 +775,9 @@ public class MainActivity extends AppCompatActivity {
                         String next = jsonArray.getString(i);
                         Log.i(TAG, String.format("%s next channel: " + next, HYPE_PUB_SUB_LOG_PREFIX));
                         try {
-                            manuallySubscribe(next);
+                            //If NOT already subscribed
+                            if (!hps.ownSubscriptions.containsSubscriptionWithServiceName(next))
+                                manuallySubscribe(next);
                         } catch (Exception e) {
                             Log.e(TAG, String.format("%s Error occured in reSubscribeToAllChannels : " + e.getMessage(), HYPE_PUB_SUB_LOG_PREFIX));
                         }
